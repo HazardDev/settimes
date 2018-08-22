@@ -1,11 +1,12 @@
 extern crate libc;
 extern crate clap;
 
-use libc::{time_t, utime, utimbuf};
 use std::fs::{metadata, Metadata};
-use clap::{Arg, App};
 use std::ffi::CString;
 use std::time::{UNIX_EPOCH, SystemTime};
+
+use clap::{Arg, App};
+use libc::{time_t, utime, utimbuf};
 
 fn main() {
 
