@@ -17,13 +17,13 @@ fn main() {
                         .short("m")
                         .long("modified")
                         .value_name("MODIFIED")
-                        .help("Tells the program to set modified time.")
+                        .help("Time in seconds since EPOCH to set as file last modified.")
                         .takes_value(true))
                     .arg(Arg::with_name("accessed")
                         .short("a")
                         .long("accessed")
                         .value_name("ACCESSED")
-                        .help("Tells the program to set accessed time."))
+                        .help("Time in seconds since EPOCH to set as file last accessed."))
                     .arg(Arg::with_name("INPUT")
                         .help("Sets the file to modifiy.")
                         .required(true))
@@ -58,7 +58,7 @@ fn main() {
 
     if !any_modified {
         //TODO: Get SystemTime to print in human readable time
-        println!("{} was last accessed at {:?}, or {} seconds since epoch.", input_file, actim, acsec);
+        println!("{} was last accessed at {:?}, or {} seconds since epoch.", input_file, actime, acsec);
         println!("{} was last modified at {:?}, or {} seconds since epoch.", input_file, modtime, modsec);
     }
 
