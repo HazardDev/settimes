@@ -1,0 +1,8 @@
+[package]
+name = "rust"
+version = "0.1.0"
+authors = ["Logan Saso <logansaso@gmail.com>"]
+
+[dependencies]
+libc = "0.2.43"
+clap = "2.32.0"
