@@ -7,8 +7,8 @@ use std::ffi::CString;
 use std::time::{UNIX_EPOCH, SystemTime};
 
 use clap::{Arg, App};
-use chrono::prelude::*;
 use libc::{time_t, utime, utimbuf};
+use chrono::prelude::{DateTime, Utc, TimeZone};
 
 fn main() {
 
