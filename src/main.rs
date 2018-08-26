@@ -42,46 +42,33 @@ fn main() {
     let acsec  = get_seconds(&actime);
 
     let modread = system_time_to_date_time(modtime);
-    let acread = system_time_to_date_time(actime);
+    let acread  = system_time_to_date_time(actime);
 
     let mut new_time: utimbuf = utimbuf { modtime: modsec, actime: acsec };
 
     let mut any_modified = false;
 
     if let Some(m) = matches.value_of("modified") {
-        if let Some(time) = get_time(m) {
+        if let Ok(time) = m.parse::<time_t>() {
             new_time.modtime = time;
             any_modified = true;
         }
     }
 
     if let Some(a) = matches.value_of("accessed") {
-        if let Some(time) = get_time(a) {
+        if let Ok(time) = a.parse::<time_t>() {
             new_time.actime = time;
             any_modified = true;
         }
     }
 
     if !any_modified {
-        //TODO: Get SystemTime to print in human readable time
         println!("'{0}' was last accessed at {1}, or {2} seconds since epoch.", input_file, acread.to_rfc2822(), acsec);
         println!("'{0}' was last modified at {1}, or {2} seconds since epoch.", input_file, modread.to_rfc2822(), modsec);
     }
 
     unsafe {
         utime(CString::new(input_file).unwrap().as_ptr(), &mut new_time);
-    }
-}
-
-fn get_time(time_string: &str) -> Option<time_t> {
-    //There's a shorthand for this but I can't remember it
-    match time_string.parse::<time_t>() {
-        Ok(value) => {
-            Some(value)
-        },
-        _ => {
-            None
-        }
     }
 }
 
