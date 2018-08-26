@@ -1,6 +1,3 @@
-/target
-**/*.rs.bk
-
-# My little working setup for testing. settimes_c is the codebase found here: https://github.com/aalex-millerr/settimes
-test_file.txt
-/settimes_c
+settimes_c/
+testdir/
+target/
